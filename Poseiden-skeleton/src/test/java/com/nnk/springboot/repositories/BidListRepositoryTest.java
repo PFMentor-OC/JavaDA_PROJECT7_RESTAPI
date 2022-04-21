@@ -3,12 +3,16 @@ package com.nnk.springboot.repositories;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.Assert;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.nnk.springboot.domain.BidList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class BidListRepositoryTest {
@@ -21,12 +25,12 @@ class BidListRepositoryTest {
 
 		// Save
 		bid = bidListRepository.save(bid);
-		Assert.assertNotNull(bid.getBidListId());
-		Assert.assertEquals(bid.getAccount(), "Account Test");
-		Assert.assertEquals(bid.getBidQuantity(), 10d, 10d);
-		Assert.assertEquals(bid.getType(), "Type Test");
-		Assert.assertNull(bid.getAskQuantity());
-		Assert.assertNull(bid.getCreationDate());
+		assertNotNull(bid.getBidListId());
+		assertEquals(bid.getAccount(), "Account Test");
+		assertEquals(bid.getBidQuantity(), 10d, 10d);
+		assertEquals(bid.getType(), "Type Test");
+		assertNull(bid.getAskQuantity());
+		assertNull(bid.getCreationDate());
 		
 		// Update
 				bid.setBidQuantity(20d);
@@ -34,14 +38,14 @@ class BidListRepositoryTest {
 				bid.setAskQuantity(10d);
 				bid.setType("type");
 				bid = bidListRepository.save(bid);
-				Assert.assertEquals(bid.getBidQuantity(), 20d, 20d);
-				Assert.assertEquals(bid.getAccount(), "update account");
-				Assert.assertEquals(bid.getAskQuantity(), 10d, 10d);
-				Assert.assertEquals(bid.getType(), "type");
+				assertEquals(bid.getBidQuantity(), 20d, 20d);
+				assertEquals(bid.getAccount(), "update account");
+				assertEquals(bid.getAskQuantity(), 10d, 10d);
+				assertEquals(bid.getType(), "type");
 				
 				// Find
 				List<BidList> listResult = bidListRepository.findAll();
-				Assert.assertTrue(listResult.size() > 0);
+				assertTrue(listResult.size() > 0);
 				
 				
 				// Delete
@@ -49,7 +53,7 @@ class BidListRepositoryTest {
 //				Integer id = bid.getBidListId();
 //				bidListRepository.delete(bid);
 //				Optional<BidList> bidList = bidListRepository.findById(id);
-//				Assert.assertFalse(bidList.isPresent());
+//				assertFalse(bidList.isPresent());
 
 	}
 

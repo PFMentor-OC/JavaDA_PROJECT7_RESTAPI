@@ -3,12 +3,15 @@ package com.nnk.springboot.repositories;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.Assert;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.nnk.springboot.domain.Trade;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @SpringBootTest
@@ -23,23 +26,23 @@ public class TradeTests {
 
 		// Save
 		trade = tradeRepository.save(trade);
-		Assert.assertNotNull(trade.getTradeId());
-		Assert.assertTrue(trade.getAccount().equals("Trade Account"));
-		Assert.assertTrue(trade.getType().equals("Type"));
-		Assert.assertTrue(trade.getBuyQuantity().equals(10d));
-		Assert.assertNull(trade.getBenchmark());
-		Assert.assertNull(trade.getBook());
-		Assert.assertNull(trade.getDealName());
-		Assert.assertNull(trade.getRevisionName());
-		Assert.assertNull(trade.getSecurity());
-		Assert.assertNull(trade.getSide());
-		Assert.assertNull(trade.getSourceListId());
-		Assert.assertNull(trade.getStatus());
-		Assert.assertNull(trade.getDealType());
-		Assert.assertNull(trade.getBuyPrice());
-		Assert.assertNull(trade.getSellPrice());
-		Assert.assertNull(trade.getSellQuantity());
-		Assert.assertNull(trade.getTrader());
+		assertNotNull(trade.getTradeId());
+		assertTrue(trade.getAccount().equals("Trade Account"));
+		assertTrue(trade.getType().equals("Type"));
+		assertTrue(trade.getBuyQuantity().equals(10d));
+		assertNull(trade.getBenchmark());
+		assertNull(trade.getBook());
+		assertNull(trade.getDealName());
+		assertNull(trade.getRevisionName());
+		assertNull(trade.getSecurity());
+		assertNull(trade.getSide());
+		assertNull(trade.getSourceListId());
+		assertNull(trade.getStatus());
+		assertNull(trade.getDealType());
+		assertNull(trade.getBuyPrice());
+		assertNull(trade.getSellPrice());
+		assertNull(trade.getSellQuantity());
+		assertNull(trade.getTrader());
 
 		// Update
 		trade.setAccount("Trade Account Update");
@@ -53,25 +56,25 @@ public class TradeTests {
 		trade.setTrader("trader");
 		trade.setType("type");
 		trade = tradeRepository.save(trade);
-		Assert.assertTrue(trade.getAccount().equals("Trade Account Update"));
-		Assert.assertTrue(trade.getBook().equals("book"));
-		Assert.assertTrue(trade.getCreationName().equals("creationName"));
-		Assert.assertTrue(trade.getBenchmark().equals("benchmark"));
-		Assert.assertTrue(trade.getDealName().equals("dealName"));
-		Assert.assertTrue(trade.getSecurity().equals("security"));
-		Assert.assertTrue(trade.getSide().equals("side"));
-		Assert.assertTrue(trade.getSourceListId().equals("sourceListId"));
-		Assert.assertTrue(trade.getTrader().equals("trader"));
-		Assert.assertTrue(trade.getType().equals("type"));
+		assertTrue(trade.getAccount().equals("Trade Account Update"));
+		assertTrue(trade.getBook().equals("book"));
+		assertTrue(trade.getCreationName().equals("creationName"));
+		assertTrue(trade.getBenchmark().equals("benchmark"));
+		assertTrue(trade.getDealName().equals("dealName"));
+		assertTrue(trade.getSecurity().equals("security"));
+		assertTrue(trade.getSide().equals("side"));
+		assertTrue(trade.getSourceListId().equals("sourceListId"));
+		assertTrue(trade.getTrader().equals("trader"));
+		assertTrue(trade.getType().equals("type"));
 
 		// Find
 		List<Trade> listResult = tradeRepository.findAll();
-		Assert.assertTrue(listResult.size() > 0);
+		assertTrue(!listResult.isEmpty());
 
 		// Delete
 //		Integer id = trade.getTradeId();
 //		tradeRepository.delete(trade);
 //		Optional<Trade> tradeList = tradeRepository.findById(id);
-//		Assert.assertFalse(tradeList.isPresent());
+//		assertFalse(tradeList.isPresent());
 	}
 }

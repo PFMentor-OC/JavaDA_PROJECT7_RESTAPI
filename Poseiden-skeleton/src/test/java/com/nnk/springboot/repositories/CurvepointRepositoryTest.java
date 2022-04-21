@@ -3,7 +3,8 @@ package com.nnk.springboot.repositories;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,10 +24,10 @@ public class CurvepointRepositoryTest {
 
 		curvePoint = curvePointRepository.save(curvePoint);
 
-		Assert.assertNotNull(curvePoint.getId());
-		Assert.assertTrue(curvePoint.getCurveId() == 10);
-		Assert.assertTrue(curvePoint.getTerm() == 10d);
-		Assert.assertTrue(curvePoint.getValue() == 30d);
+		assertNotNull(curvePoint.getId());
+		assertTrue(curvePoint.getCurveId() == 10);
+		assertTrue(curvePoint.getTerm() == 10d);
+		assertTrue(curvePoint.getValue() == 30d);
 
 		// Update
 
@@ -34,21 +35,21 @@ public class CurvepointRepositoryTest {
 		curvePoint.setTerm(20d);
 		curvePoint.setValue(100d);
 		curvePoint = curvePointRepository.save(curvePoint);
-		Assert.assertTrue(curvePoint.getCurveId() == 20);
-		Assert.assertTrue(curvePoint.getTerm() == 20d);
-		Assert.assertTrue(curvePoint.getValue() == 100d);
+		assertTrue(curvePoint.getCurveId() == 20);
+		assertTrue(curvePoint.getTerm() == 20d);
+		assertTrue(curvePoint.getValue() == 100d);
 
 		// Find
 
 		List<CurvePoint> listResult = curvePointRepository.findAll();
-		Assert.assertTrue(listResult.size() > 0);
+		assertTrue(listResult.size() > 0);
 
 		// Delete
 
 //		Integer id = curvePoint.getId();
 //		curvePointRepository.delete(curvePoint);
 //		Optional<CurvePoint> curvePointList = curvePointRepository.findById(id);
-//		Assert.assertFalse(curvePointList.isPresent());
+//		assertFalse(curvePointList.isPresent());
 
 	}
 
