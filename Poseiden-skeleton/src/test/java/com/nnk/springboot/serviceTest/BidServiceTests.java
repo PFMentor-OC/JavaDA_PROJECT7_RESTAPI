@@ -17,25 +17,21 @@ import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.repositories.BidListRepository;
 import com.nnk.springboot.service.BidListService;
 
-
-
-
 @SpringBootTest
 
 public class BidServiceTests {
-	@Autowired
-	private BidListService service;
-	@MockBean
-	private BidListRepository repository;
 
-	
-	@Test
+    @Autowired
+    private BidListService service;
+    @MockBean
+    private BidListRepository repository;
+
+    @Test
     @DisplayName("Test save bidList")
     void testSave() {
         // Setup our mock repository
-       
-		
-		BidList bid = new BidList("Account Test", "Type Test", 10d);
+
+        BidList bid = new BidList("Account Test", "Type Test", 10d);
         doReturn(bid).when(repository).save(any());
 
         // Execute the service call
@@ -45,12 +41,12 @@ public class BidServiceTests {
         Assertions.assertNotNull(returnedBidlist, "The saved bidlist should not be null");
         Assertions.assertEquals("Account Test", returnedBidlist.getAccount());
     }
-	
-	@Test
+
+    @Test
     @DisplayName("Test findById Success")
     void testFindById() {
         // Setup our mock repository
-		BidList bid = new BidList("Account Test", "Type Test", 10d);
+        BidList bid = new BidList("Account Test", "Type Test", 10d);
         doReturn(Optional.of(bid)).when(repository).findById(6);
 
         // Execute the service call
@@ -60,8 +56,8 @@ public class BidServiceTests {
         Assertions.assertTrue(returnedBidList.isPresent(), "BidList was not found");
         Assertions.assertSame(returnedBidList.get(), bid, "The BidList returned was not the same as the mock");
     }
-	
-	@Test
+
+    @Test
     @DisplayName("Test findById Not Found")
     void testFindByIdNotFound() {
         // Setup our mock repository
@@ -73,13 +69,13 @@ public class BidServiceTests {
         // Assert the response
         Assertions.assertFalse(returnedBidList.isPresent(), "BidList should not be found");
     }
-	
-	@Test
+
+    @Test
     @DisplayName("Test findAll")
     void testFindAll() {
         // Setup our mock repository
-		BidList bid1 = new BidList("Account Test", "Type Test", 10d);
-		BidList bid2 = new BidList("Account Test2", "Type Test2", 10d);
+        BidList bid1 = new BidList("Account Test", "Type Test", 10d);
+        BidList bid2 = new BidList("Account Test2", "Type Test2", 10d);
         doReturn(Arrays.asList(bid1, bid2)).when(repository).findAll();
 
         // Execute the service call
