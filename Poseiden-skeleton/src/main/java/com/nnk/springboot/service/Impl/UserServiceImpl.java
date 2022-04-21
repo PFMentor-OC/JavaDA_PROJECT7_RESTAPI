@@ -13,13 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.service.UserService;
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService   {
 	@Autowired
 	private UserRepository userRepository;  
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+        
+
 	
 	private static final Logger LOGGER = LogManager.getLogger(UserServiceImpl .class);
 
